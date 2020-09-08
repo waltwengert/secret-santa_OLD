@@ -10,11 +10,11 @@
   <body>
     <h1 class="heading">Secret Santa</h1>
     <h2 class="heading">Enter each participant's name below:</h2>
+    <input id="input" type="text" placeholder="Name" autofocus></input>
 
-    <div class="heading input">
-      <input id="input" type="text" placeholder="Name" autofocus></input>
+    <div class="heading inputBtns">
       <button onclick="addParticipant()">Add</button>
-      <button onclick="randomise()">Randomise</button>
+      <button onclick="randomise()">Shuffle</button>
       <button onclick="toggleResults()" id="hide">Reveal</button> 
     </div>
 

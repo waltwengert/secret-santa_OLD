@@ -17,8 +17,9 @@ function addParticipant() {
   //create the <p> element for each participant's recipient (generated on assign())
   //give each a unique ID so they can be modified later
   var recipient = document.createElement("p");
-  recipient.innerHTML = "/";
+  recipient.innerHTML = "-";
   recipient.id = name; //TODO make IDs unique (in case multiple same names)
+  recipient.classList.add("recipient");
 
   //add the elements to page and reset input field
   document.getElementById("result").appendChild(nameP);
@@ -77,9 +78,10 @@ function shuffle(array) {
 }
 
 function toggleResults() {
-  //TODO only do anything when at least one participant added
+  //TODO make participant 100% width when recipient is hidden
+
   //loop through each participant result ID
-  if (participants.length > 1) {
+  if (participants.length > 0) {
     if (document.getElementById(participants[0]).style.display == "none") {
       //the results are already hidden, reveal them and switch button text
       for (var i = 0; i < participants.length; i++) {
