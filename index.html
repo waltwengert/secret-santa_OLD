@@ -7,13 +7,17 @@
   </head>
 
   <body>
-    <h1>Secret Santa</h1>
-    <h2>Enter each participant's name below:</h2>
+    <h1 class="heading">Secret Santa</h1>
+    <h2 class="heading">Enter each participant's name below:</h2>
 
-    <input id="input" type="text" placeholder="Name" autofocus></input>
-    <button onclick="addParticipant()">Add</button>
-    <button onclick="randomise()">Randomise</button>
-    <button onclick="toggleResults()" id="hide">Hide</button> 
+    <div class="heading input">
+      <input id="input" type="text" placeholder="Name" autofocus></input>
+      <button onclick="addParticipant()">Add</button>
+      <button onclick="randomise()">Randomise</button>
+      <button onclick="toggleResults()" id="hide">Reveal</button> 
+    </div>
+
+    <div id="result"></div>
 
     <script type="text/javascript" src="index.js"></script>
   </body>
