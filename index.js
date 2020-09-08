@@ -2,7 +2,12 @@ var participants = [];
 
 function addParticipant() {
   //get the name that was just entered and add it to participants array
+  //do nothing if input field empty
   var name = document.getElementById("input").value;
+  if (name == "") {
+    document.getElementById("input").focus();
+    return;
+  }
   participants.push(name);
 
   //create the <p> element for each name to be displayed
