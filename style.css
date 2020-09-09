@@ -1,5 +1,4 @@
 * {
-  font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -13,14 +12,15 @@ body {
   width: 100%;
   height: 100%;
   background-color: #146b3a;
+  font-family: "Grandstander", Arial, Helvetica, sans-serif;
   overflow-x: hidden;
 }
 
 .heading {
-  padding-top: 20px;
+  padding-top: 30px;
 
   display: block;
-  width: 40vw;
+  width: 100%;
   margin-right: auto;
   margin-left: auto;
 
@@ -28,12 +28,8 @@ body {
   color: #f8b229;
 }
 
-.heading h1 {
-  font-size: 36px;
-}
-
-.heading h2 {
-  font-size: 28px;
+h1 {
+  font-size: 58px;
 }
 
 input {
@@ -43,10 +39,10 @@ input {
   padding-bottom: 5px;
 
   margin-bottom: 10px;
-  margin-top: 40px;
+  margin-top: 30px;
 
   display: block;
-  width: 30vw;
+  width: 40vw;
   margin-right: auto;
   margin-left: auto;
 }
@@ -75,7 +71,9 @@ input {
 
 #result {
   background-color: #165b33;
-  min-height: 80%;
+  min-height: 60%;
+  overflow: auto;
+
   margin-top: 20px;
   margin-bottom: 40px;
 
@@ -86,33 +84,36 @@ input {
 
 #result p {
   color: #f8b229;
-  font-size: 18px;
+  font-size: 24px;
 
   padding-top: 5%;
   padding-bottom: 5%;
 
-  width: 50%;
+  width: 33.33%;
   text-align: center;
   float: left;
 }
 
-/*#result .recipient {
+#result p.whiteTxt {
+  color: #ffffff;
+  font-size: 22px;
+}
 
-}*/
-
-/*if the screen is less than 600px wide (i.e. a mobile device)*/
-@media screen and (max-width: 600px) {
-  .heading {
-    width: 80vw;
-  }
-
+/*if the screen is less than 700px wide (i.e. a mobile device)*/
+@media screen and (max-width: 700px) {
   #result {
+    min-height: 60%;
     width: 90vw;
     margin-bottom: 1000px;
   }
 
+  h1 {
+    font-size: 12vw;
+  }
+
   input {
-    width: 70vw;
+    width: 85vw;
+    margin-top: 25px;
   }
 
   .inputBtns {
