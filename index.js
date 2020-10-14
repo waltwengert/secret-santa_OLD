@@ -39,6 +39,8 @@ function addParticipant() {
   } else {
     recipient.style.visibility = "visible";
   }
+
+  randomise();
 }
 
 function addHidden() {
