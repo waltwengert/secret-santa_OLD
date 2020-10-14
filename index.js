@@ -2,13 +2,17 @@ var participants = [];
 
 function addParticipant() {
   //get the name that was just entered and add it to participants array
-  //do nothing if input field empty
+  //do nothing if input field empty, differentiate if duplicate
   var name = document.getElementById("input").value;
+  var numNameDupe = numSameName(name);
+  participants.push(name);
+
   if (name == "") {
     document.getElementById("input").focus();
     return;
+  } else if (numNameDupe > 0) {
+    name = name + "#" + numNameDupe;
   }
-  participants.push(name);
 
   //create the container for each participant (and their recipient) with id=index
   var participantContainer = document.createElement("div");
@@ -49,6 +53,20 @@ function addParticipant() {
   }
 
   randomise();
+}
+
+function numSameName(pName) {
+  //helper function that returns number of times this name has already been entered
+  var count = 0;
+
+  for (i = 0; i < participants.length; i++) {
+    if (participants[i] == pName) {
+      count++;
+    }
+  }
+  console.log(count);
+  console.log(participants);
+  return count;
 }
 
 function addHidden() {
