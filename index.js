@@ -37,11 +37,17 @@ function addParticipant() {
   recipient.id = recipID;
   recipient.classList.add("recipient");
 
+  //the present image which hides the recipient by covering it (higher z-index)
+  var present = document.createElement("img");
+  present.classList.add("present");
+  present.src = "present.png";
+
   //add the elements to page and reset input field
   document.getElementById("result").appendChild(participantContainer);
   document.getElementById(containerID).appendChild(nameP);
   document.getElementById(containerID).appendChild(has);
   document.getElementById(containerID).appendChild(recipient);
+  document.getElementById(containerID).appendChild(present);
   document.getElementById("input").value = "";
   document.getElementById("input").focus();
 
