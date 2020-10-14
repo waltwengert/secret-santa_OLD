@@ -26,7 +26,7 @@ function addParticipant() {
   has.innerHTML = "has";
 
   //create the <p> element for each participant's recipient (generated on assign())
-  //give each a unique ID so they can be modified later
+  //give each a unique ID so they can be modified later (while handling duplicates)
   var recipient = document.createElement("p");
   recipient.innerHTML = "-";
   recipient.id = name; //TODO make IDs unique (in case multiple same names)
@@ -101,13 +101,13 @@ function toggleResults() {
       //the results are already hidden, reveal them and switch button text
       for (var i = 0; i < participants.length; i++) {
         document.getElementById(participants[i]).style.visibility = "visible";
-        document.getElementById("hide").innerHTML = "Hide";
+        document.getElementById("hide").innerHTML = "Hide All";
       }
     } else {
       //the results aren't hidden, hide them and switch button text
       for (var i = 0; i < participants.length; i++) {
         document.getElementById(participants[i]).style.visibility = "hidden";
-        document.getElementById("hide").innerHTML = "Reveal";
+        document.getElementById("hide").innerHTML = "Reveal All";
       }
     }
   }
