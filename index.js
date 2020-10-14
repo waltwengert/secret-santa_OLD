@@ -13,7 +13,7 @@ function addParticipant() {
   //create the container for each participant (and their recipient) with id=index
   var participantContainer = document.createElement("div");
   participantContainer.classList.add("pContainer");
-  var containerID = "cont" + participants.length;
+  var containerID = "cont" + (participants.length - 1);
   participantContainer.id = containerID;
 
   //create the <p> element for each name to be displayed
@@ -29,7 +29,8 @@ function addParticipant() {
   //give each a unique ID so they can be modified later (while handling duplicates)
   var recipient = document.createElement("p");
   recipient.innerHTML = "-";
-  recipient.id = name; //TODO make IDs unique (in case multiple same names)
+  var recipID = "recip" + (participants.length - 1);
+  recipient.id = recipID;
   recipient.classList.add("recipient");
 
   //add the elements to page and reset input field
@@ -54,7 +55,7 @@ function addHidden() {
   //helper function to determine if a recipient should be added in the
   //hidden or revealed state (true and false respectively)
   if (participants.length > 1) {
-    if (document.getElementById(participants[0]).style.visibility == "hidden") {
+    if (document.getElementById("recip0").style.visibility == "hidden") {
       console.log("already hidden");
       return true;
     } else {
@@ -71,8 +72,7 @@ function randomise() {
   var participantsShuffled = shuffle(participants);
 
   for (var i = 0; i < participants.length; i++) {
-    document.getElementById(participants[i]).innerHTML =
-      participantsShuffled[i];
+    document.getElementById("recip" + i).innerHTML = participantsShuffled[i];
   }
 }
 
@@ -93,20 +93,19 @@ function shuffle(array) {
 }
 
 function toggleResults() {
-  //TODO make participant 100% width when recipient is hidden
-
   //loop through each participant result ID
   if (participants.length > 0) {
-    if (document.getElementById(participants[0]).style.visibility == "hidden") {
+    //TODO unique IDs for participants below
+    if (document.getElementById("recip0").style.visibility == "hidden") {
       //the results are already hidden, reveal them and switch button text
       for (var i = 0; i < participants.length; i++) {
-        document.getElementById(participants[i]).style.visibility = "visible";
+        document.getElementById("recip" + i).style.visibility = "visible";
         document.getElementById("hide").innerHTML = "Hide All";
       }
     } else {
       //the results aren't hidden, hide them and switch button text
       for (var i = 0; i < participants.length; i++) {
-        document.getElementById(participants[i]).style.visibility = "hidden";
+        document.getElementById("recip" + i).style.visibility = "hidden";
         document.getElementById("hide").innerHTML = "Reveal All";
       }
     }
