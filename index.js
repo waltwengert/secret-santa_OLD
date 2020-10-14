@@ -41,6 +41,8 @@ function addParticipant() {
   var present = document.createElement("img");
   present.classList.add("present");
   present.src = "present.png";
+  var presID = "pres" + (participants.length - 1);
+  present.id = presID;
 
   //add the elements to page and reset input field
   document.getElementById("result").appendChild(participantContainer);
@@ -51,11 +53,11 @@ function addParticipant() {
   document.getElementById("input").value = "";
   document.getElementById("input").focus();
 
-  //check if the added recipient should be hidden or not
+  //check if the added present should be hidden or not
   if (addHidden()) {
-    recipient.style.visibility = "hidden";
+    present.style.visibility = "visible";
   } else {
-    recipient.style.visibility = "visible";
+    present.style.visibility = "hidden";
   }
 
   randomise();
@@ -76,18 +78,15 @@ function numSameName(pName) {
 }
 
 function addHidden() {
-  //helper function to determine if a recipient should be added in the
+  //helper function to determine if a present should be added in the
   //hidden or revealed state (true and false respectively)
   if (participants.length > 1) {
-    if (document.getElementById("recip0").style.visibility == "hidden") {
-      console.log("already hidden");
+    if (document.getElementById("pres0").style.visibility == "visible") {
       return true;
     } else {
-      console.log("revealed");
       return false;
     }
   }
-  console.log("first");
   return true;
 }
 
@@ -119,18 +118,17 @@ function shuffle(array) {
 function toggleResults() {
   //loop through each participant result ID
   if (participants.length > 0) {
-    //TODO unique IDs for participants below
-    if (document.getElementById("recip0").style.visibility == "hidden") {
-      //the results are already hidden, reveal them and switch button text
+    if (document.getElementById("pres0").style.visibility == "hidden") {
+      //the presents are already hidden, show them and switch button text
       for (var i = 0; i < participants.length; i++) {
-        document.getElementById("recip" + i).style.visibility = "visible";
-        document.getElementById("hide").innerHTML = "Hide All";
+        document.getElementById("pres" + i).style.visibility = "visible";
+        document.getElementById("hide").innerHTML = "Reveal All";
       }
     } else {
-      //the results aren't hidden, hide them and switch button text
+      //the presents aren't hidden, hide them and switch button text
       for (var i = 0; i < participants.length; i++) {
-        document.getElementById("recip" + i).style.visibility = "hidden";
-        document.getElementById("hide").innerHTML = "Reveal All";
+        document.getElementById("pres" + i).style.visibility = "hidden";
+        document.getElementById("hide").innerHTML = "Hide All";
       }
     }
   }
