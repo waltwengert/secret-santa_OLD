@@ -10,6 +10,12 @@ function addParticipant() {
   }
   participants.push(name);
 
+  //create the container for each participant (and their recipient) with id=index
+  var participantContainer = document.createElement("div");
+  participantContainer.classList.add("pContainer");
+  var containerID = "cont" + participants.length;
+  participantContainer.id = containerID;
+
   //create the <p> element for each name to be displayed
   var nameP = document.createElement("p");
   nameP.innerHTML = name;
@@ -27,9 +33,10 @@ function addParticipant() {
   recipient.classList.add("recipient");
 
   //add the elements to page and reset input field
-  document.getElementById("result").appendChild(nameP);
-  document.getElementById("result").appendChild(has);
-  document.getElementById("result").appendChild(recipient);
+  document.getElementById("result").appendChild(participantContainer);
+  document.getElementById(containerID).appendChild(nameP);
+  document.getElementById(containerID).appendChild(has);
+  document.getElementById(containerID).appendChild(recipient);
   document.getElementById("input").value = "";
   document.getElementById("input").focus();
 
