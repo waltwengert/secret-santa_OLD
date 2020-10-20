@@ -127,6 +127,8 @@ input {
   width: 21%;
   height: 8%;
   z-index: 999;
+
+  cursor: pointer;
 }
 
 /*if the screen is less than 700px wide (i.e. a mobile device)*/

@@ -43,6 +43,8 @@ function addParticipant() {
   present.src = "present.png";
   var presID = "pres" + (participants.length - 1);
   present.id = presID;
+  present.opacity = 1;
+  present.onclick = function() { togglePresent(presID) };
 
   //add the elements to page and reset input field
   document.getElementById("result").appendChild(participantContainer);
@@ -55,12 +57,22 @@ function addParticipant() {
 
   //check if the added present should be hidden or not
   if (addHidden()) {
-    present.style.visibility = "visible";
+    present.style.opacity = 1;
   } else {
-    present.style.visibility = "hidden";
+    present.style.opacity = 0;
   }
 
   randomise();
+}
+
+function togglePresent(presID) {
+  p = document.getElementById(presID);
+  
+  if (p.style.opacity == 1) {
+    p.style.opacity = 0;
+  } else {
+    p.style.opacity = 1;
+  }
 }
 
 function numSameName(pName) {
@@ -81,7 +93,7 @@ function addHidden() {
   //helper function to determine if a present should be added in the
   //hidden or revealed state (true and false respectively)
   if (participants.length > 1) {
-    if (document.getElementById("pres0").style.visibility == "visible") {
+    if (document.getElementById("pres0").style.opacity == 1) {
       return true;
     } else {
       return false;
@@ -118,16 +130,16 @@ function shuffle(array) {
 function toggleResults() {
   //loop through each participant result ID
   if (participants.length > 0) {
-    if (document.getElementById("pres0").style.visibility == "hidden") {
+    if (document.getElementById("pres0").style.opacity == 0) {
       //the presents are already hidden, show them and switch button text
       for (var i = 0; i < participants.length; i++) {
-        document.getElementById("pres" + i).style.visibility = "visible";
+        document.getElementById("pres" + i).style.opacity = 1;
         document.getElementById("hide").innerHTML = "Reveal All";
       }
     } else {
       //the presents aren't hidden, hide them and switch button text
       for (var i = 0; i < participants.length; i++) {
-        document.getElementById("pres" + i).style.visibility = "hidden";
+        document.getElementById("pres" + i).style.opacity = 0;
         document.getElementById("hide").innerHTML = "Hide All";
       }
     }
