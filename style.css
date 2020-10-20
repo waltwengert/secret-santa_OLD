@@ -67,6 +67,8 @@ input {
   min-height: 40px;
   margin-right: 5px;
   margin-left: 5px;
+
+  cursor: pointer;
 }
 
 .inputBtns button:active {
