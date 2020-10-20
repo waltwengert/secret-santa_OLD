@@ -100,7 +100,6 @@ input {
   padding-top: 5%;
   padding-bottom: 5%;
 
-  width: 33.33%;
   text-align: center;
   float: left;
 
@@ -115,6 +114,17 @@ input {
   font-size: 22px;
 
   flex: 1;
+}
+
+.present {
+  position: absolute;
+  object-fit: fill;
+  margin-left: 28%;
+  margin-top: 15px;
+
+  width: 21%;
+  height: 8%;
+  z-index: 999;
 }
 
 /*if the screen is less than 700px wide (i.e. a mobile device)*/
