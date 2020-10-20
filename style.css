@@ -91,8 +91,8 @@ input {
 .pContainer {
   display: flex;
 
-  margin-left: 1vw;
-  margin-right: 1vw;
+  margin-left: 2vw;
+  margin-right: 2vw;
 }
 
 .pContainer /*#result*/ p {
@@ -121,10 +121,10 @@ input {
 .present {
   position: absolute;
   object-fit: fill;
-  margin-left: 28%;
-  margin-top: 15px;
+  margin-left: 26%;
+  padding-top: 1%;
 
-  width: 21%;
+  width: 22%;
   height: 8%;
   z-index: 999;
 
@@ -150,6 +150,11 @@ input {
 
   .inputBtns {
     width: 95vw;
+  }
+
+  .present {
+    margin-left: 50%;
+    width: 40%;
   }
 }
 
