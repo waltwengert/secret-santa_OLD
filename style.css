@@ -104,7 +104,7 @@ input {
 
   text-align: center;
 
-  flex: 2;
+  flex: 3;
 
   text-overflow: ellipsis;
   overflow: hidden;
@@ -123,8 +123,8 @@ input {
   margin-left: 26%;
   padding-top: 1%;
 
-  width: 22%;
-  height: 8%;
+  width: 22vw;
+  height: 8vh;
   z-index: 999;
 
   cursor: pointer;
@@ -153,6 +153,7 @@ input {
   .present {
     margin-left: 50vw;
     width: 38vw;
+    height: 6vh;
   }
 }
 
