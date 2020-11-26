@@ -73,6 +73,12 @@ function togglePresent(presID) {
   } else {
     p.style.opacity = 1;
   }
+
+  if (allNamesRevealed()) {
+    document.getElementById("hide").innerHTML = "Hide All";
+  } else {
+    document.getElementById("hide").innerHTML = "Reveal All";
+  }
 }
 
 function numSameName(pName) {
@@ -84,8 +90,6 @@ function numSameName(pName) {
       count++;
     }
   }
-  console.log(count);
-  console.log(participants);
   return count;
 }
 
@@ -130,20 +134,30 @@ function shuffle(array) {
 function toggleResults() {
   //loop through each participant result ID
   if (participants.length > 0) {
-    if (document.getElementById("pres0").style.opacity == 0) {
-      //the presents are already hidden, show them and switch button text
+    if (allNamesRevealed()) {
+      //the presents are all hidden, show them and switch button text
       for (var i = 0; i < participants.length; i++) {
         document.getElementById("pres" + i).style.opacity = 1;
         document.getElementById("hide").innerHTML = "Reveal All";
       }
     } else {
-      //the presents aren't hidden, hide them and switch button text
+      //the presents aren't all hidden, hide them and switch button text
       for (var i = 0; i < participants.length; i++) {
         document.getElementById("pres" + i).style.opacity = 0;
         document.getElementById("hide").innerHTML = "Hide All";
       }
     }
   }
+}
+
+function allNamesRevealed() {
+  for (var i = 0; i < participants.length; i++) {
+    var pID = "pres" + i;
+    if (document.getElementById(pID).style.opacity == 1) {
+      return false;
+    }
+  }
+  return true;
 }
 
 //add an event listener (for the enter key) when input is focused
