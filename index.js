@@ -41,8 +41,8 @@ function addParticipant() {
   var present = document.createElement("img");
   present.classList.add("present");
   present.src = "present.png";
-  var presID = "pres" + (participants.length - 1);
-  present.id = presID;
+  var presID = participants.length - 1;
+  present.id = "pres" + presID;
   present.opacity = 1;
   present.onclick = function() { togglePresent(presID) };
 
@@ -58,20 +58,25 @@ function addParticipant() {
   //check if the added present should be hidden or not
   if (addHidden()) {
     present.style.opacity = 1;
+    recipient.style.opacity = 0;
   } else {
     present.style.opacity = 0;
+    recipient.style.opacity = 1;
   }
-
   randomise();
 }
 
 function togglePresent(presID) {
-  p = document.getElementById(presID);
+  console.log(presID);
+  var p = document.getElementById("pres" + presID);
+  var r = document.getElementById("recip" + presID);
   
   if (p.style.opacity == 1) {
     p.style.opacity = 0;
+    r.style.opacity = 1;
   } else {
     p.style.opacity = 1;
+    r.style.opacity = 0;
   }
 
   if (allNamesRevealed()) {
@@ -127,7 +132,6 @@ function shuffle(array) {
     shuffled[i] = shuffled[j];
     shuffled[j] = temp;
   }
-
   return shuffled;
 }
 
@@ -138,12 +142,14 @@ function toggleResults() {
       //the presents are all hidden, show them and switch button text
       for (var i = 0; i < participants.length; i++) {
         document.getElementById("pres" + i).style.opacity = 1;
+        document.getElementById("recip" + i).style.opacity = 0;
         document.getElementById("hide").innerHTML = "Reveal All";
       }
     } else {
       //the presents aren't all hidden, hide them and switch button text
       for (var i = 0; i < participants.length; i++) {
         document.getElementById("pres" + i).style.opacity = 0;
+        document.getElementById("recip" + i).style.opacity = 1;
         document.getElementById("hide").innerHTML = "Hide All";
       }
     }
