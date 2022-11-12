@@ -32,7 +32,7 @@ h1 {
   font-size: 58px;
 }
 
-input {
+#input {
   font-size: 18px;
   padding-left: 10px;
   padding-top: 5px;
@@ -45,6 +45,19 @@ input {
   width: 40vw;
   margin-right: auto;
   margin-left: auto;
+}
+
+.encryptOptions {
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  width: 50vw;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.encryptMode {
+  display: inline-block;
 }
 
 .inputBtns {

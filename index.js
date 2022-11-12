@@ -116,7 +116,9 @@ function randomise() {
   var participantsShuffled = shuffle(participants);
 
   for (var i = 0; i < participants.length; i++) {
-    document.getElementById("recip" + i).innerHTML = participantsShuffled[i];
+    //TODO: encrypt/plain text mode with a checkbox
+    //document.getElementById("recip" + i).innerHTML = participantsShuffled[i];
+    document.getElementById("recip" + i).innerHTML = encrypt(participantsShuffled[i]);
   }
 }
 
@@ -133,6 +135,30 @@ function shuffle(array) {
     shuffled[j] = temp;
   }
   return shuffled;
+}
+
+function encrypt(participant) {
+  var encryptedParticipant = "";
+  var cipherKey = 13;
+
+  for (var i = 0; i < participant.length; i++) {
+    var charCode = participant.charAt(i).charCodeAt();
+    //console.log("Initial char code is: " + charCode);
+
+    //lower case ASCII alphabet is 97(a) to 122(z)
+    //TODO: make this work for upper case alphabet too
+    if (charCode + cipherKey > 122) { //start at beginning of alphabet
+      charCode += cipherKey - 26;
+    } else {
+      charCode += cipherKey;
+    }
+    //console.log("Encrypted char code is: " + charCode);
+
+    var char = String.fromCharCode(charCode);
+    encryptedParticipant += char;
+  }
+  
+  return encryptedParticipant;
 }
 
 function toggleResults() {
