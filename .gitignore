@@ -1,4 +1,4 @@
 .vs/*
 .vs/ProjectSettings.json
 .vs/VSWorkspaceState.json
-.gitignore
+.vscode/settings.json
