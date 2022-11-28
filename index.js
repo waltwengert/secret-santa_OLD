@@ -114,11 +114,15 @@ function addHidden() {
 function randomise() {
   //create a shuffled copy of the participants array using shuffle()
   var participantsShuffled = shuffle(participants);
+  var encrypted = document.getElementById("encryptMode").checked;
 
   for (var i = 0; i < participants.length; i++) {
     //TODO: encrypt/plain text mode with a checkbox
-    //document.getElementById("recip" + i).innerHTML = participantsShuffled[i];
-    document.getElementById("recip" + i).innerHTML = encrypt(participantsShuffled[i]);
+    if (encrypted) {
+        document.getElementById("recip" + i).innerHTML = encrypt(participantsShuffled[i]);
+    } else {
+        document.getElementById("recip" + i).innerHTML = participantsShuffled[i];
+    }
   }
 }
 
