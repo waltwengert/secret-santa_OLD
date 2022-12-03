@@ -258,4 +258,4 @@ function staticRandomise(participants, encrypted) {
     return participants;
 }
 
-console.log(staticRandomise(hardCodedParticipants2, true));
+console.log(staticRandomise(hardCodedParticipants, true));
