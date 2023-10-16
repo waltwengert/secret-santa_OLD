@@ -4,7 +4,7 @@ function addParticipant() {
   //get the name that was just entered and add it to participants array
   //do nothing if input field empty, differentiate if duplicate
   var name = document.getElementById("input").value;
-  var numNameDupe = numSameName(name);
+  var numNameDupe = numSameName(name, participantsArr);
   participantsArr.push(name);
 
   if (name == "") {
@@ -86,12 +86,12 @@ function togglePresent(presID) {
   }
 }
 
-function numSameName(pName) {
+function numSameName(participantName, participantsArray) {
   //helper function that returns number of times this name has already been entered
   var count = 0;
 
-  for (i = 0; i < participants.length; i++) {
-    if (participants[i] == pName) {
+  for (i = 0; i < participantsArray.length; i++) {
+    if (participantsArray[i] == participantName) {
       count++;
     }
   }
@@ -111,13 +111,12 @@ function addHidden() {
   return true;
 }
 
-function randomise(participants) {
+function randomise() {
   //create a shuffled copy of the participants array using shuffle()
-  var participantsShuffled = shuffle(participants);
+  var participantsShuffled = shuffle(participantsArr);
   var encrypted = document.getElementById("encryptMode").checked;
 
-  for (var i = 0; i < participants.length; i++) {
-    //TODO: encrypt/plain text mode with a checkbox
+  for (var i = 0; i < participantsArr.length; i++) {
     if (encrypted) {
         document.getElementById("recip" + i).innerHTML = encrypt(participantsShuffled[i]);
     } else {
@@ -168,17 +167,17 @@ function encrypt(participant) {
 
 function toggleResults() {
   //loop through each participant result ID
-  if (participants.length > 0) {
+  if (participantsArr.length > 0) {
     if (allNamesRevealed()) {
       //the presents are all hidden, show them and switch button text
-      for (var i = 0; i < participants.length; i++) {
+      for (var i = 0; i < participantsArr.length; i++) {
         document.getElementById("pres" + i).style.opacity = 1;
         document.getElementById("recip" + i).style.opacity = 0;
         document.getElementById("hide").innerHTML = "Reveal All";
       }
     } else {
       //the presents aren't all hidden, hide them and switch button text
-      for (var i = 0; i < participants.length; i++) {
+      for (var i = 0; i < participantsArr.length; i++) {
         document.getElementById("pres" + i).style.opacity = 0;
         document.getElementById("recip" + i).style.opacity = 1;
         document.getElementById("hide").innerHTML = "Hide All";
@@ -188,7 +187,7 @@ function toggleResults() {
 }
 
 function allNamesRevealed() {
-  for (var i = 0; i < participants.length; i++) {
+  for (var i = 0; i < participantsArr.length; i++) {
     var pID = "pres" + i;
     if (document.getElementById(pID).style.opacity == 1) {
       return false;
@@ -207,55 +206,55 @@ document.getElementById("input").addEventListener("keyup", function (e) {
 });
 
 
-// TODO:
-// This is the format of an array of objects that would enable a Secret Santa shuffle
-// that has a "no partner match-up" rule (e.g. in a family, a mum and dad would not be assigned each other)
-const hardCodedParticipants = [
-    { name: "name", partnerGroup: 0, recipient: ""},
-    { name: "mum", partnerGroup: 1, recipient: ""},
-    { name: "dad", partnerGroup: 1, recipient: ""},
-];
+// // TODO:
+// // This is the format of an array of objects that would enable a Secret Santa shuffle
+// // that has a "no partner match-up" rule (e.g. in a family, a mum and dad would not be assigned each other)
+// const hardCodedParticipants = [
+//     { name: "name", partnerGroup: 0, recipient: ""},
+//     { name: "mum", partnerGroup: 1, recipient: ""},
+//     { name: "dad", partnerGroup: 1, recipient: ""},
+// ];
 
-function staticShuffle(array) {
-    //use slice() so it is a clone rather than simply referencing old array
-    const shuffled = array.slice();
+// function staticShuffle(array) {
+//     //use slice() so it is a clone rather than simply referencing old array
+//     const shuffled = array.slice();
 
-    for (let i = shuffled.length - 1; i > 0; i--) {
-        //loop backwards through array, random number between 0 and i (but not including i)
-        //for the new array element's index so it is always a different element
-        // const j = Math.floor(Math.random() * i);
-        // const temp = shuffled[i];
-        // shuffled[i] = shuffled[j];
-        // shuffled[j] = temp;
+//     for (let i = shuffled.length - 1; i > 0; i--) {
+//         //loop backwards through array, random number between 0 and i (but not including i)
+//         //for the new array element's index so it is always a different element
+//         // const j = Math.floor(Math.random() * i);
+//         // const temp = shuffled[i];
+//         // shuffled[i] = shuffled[j];
+//         // shuffled[j] = temp;
 
-        let j = Math.floor(Math.random() * i);
-        if (shuffled[i].partnerGroup === shuffled[j].partnerGroup) {
-            return 1;
-        }
-        const temp = shuffled[i];
-        shuffled[i] = shuffled[j];
-        shuffled[j] = temp;
-    }
-    return shuffled;
-}
+//         let j = Math.floor(Math.random() * i);
+//         if (shuffled[i].partnerGroup === shuffled[j].partnerGroup) {
+//             return 1;
+//         }
+//         const temp = shuffled[i];
+//         shuffled[i] = shuffled[j];
+//         shuffled[j] = temp;
+//     }
+//     return shuffled;
+// }
 
-function staticRandomise(participants, encrypted) {
-    //create a shuffled copy of the participants array using shuffle()
-    // const participantsShuffled = staticShuffle(participants);
+// function staticRandomise(participants, encrypted) {
+//     //create a shuffled copy of the participants array using shuffle()
+//     // const participantsShuffled = staticShuffle(participants);
 
-    let participantsShuffled = staticShuffle(participants);
-    while (participantsShuffled === 1) {
-        console.debug('generating again');
-        participantsShuffled = staticShuffle(participants);
-    }
+//     let participantsShuffled = staticShuffle(participants);
+//     while (participantsShuffled === 1) {
+//         console.debug('generating again');
+//         participantsShuffled = staticShuffle(participants);
+//     }
 
-    for (let i = 0; i < participants.length; i++) {
-        participants[i].recipient = encrypted 
-                ? encrypt(participantsShuffled[i].name)
-                : participantsShuffled[i].name;
-    }
+//     for (let i = 0; i < participants.length; i++) {
+//         participants[i].recipient = encrypted 
+//                 ? encrypt(participantsShuffled[i].name)
+//                 : participantsShuffled[i].name;
+//     }
 
-    return participants;
-}
+//     return participants;
+// }
 
-console.log(staticRandomise(hardCodedParticipants, true));
+// // console.log(staticRandomise(hardCodedParticipants, true));
