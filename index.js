@@ -161,8 +161,10 @@ function encrypt(participant) {
     var char = String.fromCharCode(charCode);
     encryptedParticipant += char;
   }
+
+  var randomNumberPad = Math.floor(1000 + Math.random() * 9000);
   
-  return encryptedParticipant;
+  return `${randomNumberPad}${encryptedParticipant}`;
 }
 
 function toggleResults() {
